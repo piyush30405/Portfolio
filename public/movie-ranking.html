@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Ranking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #121212;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #ffcc00;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+        }
+        .movie-list {
+            list-style: none;
+            padding: 0;
+        }
+        .movie-list li {
+            background: #282828;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .rating {
+            color: #ffcc00;
+            font-weight: bold;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+        button {
+            background: #ffcc00;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background: #e6b800;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🎬 Movie Ranking 🎬</h1>
+    
+    <div class="container">
+        <h2>Top Movies</h2>
+        <ul class="movie-list" id="movieList">
+            <li>Interstellar <span class="rating">⭐ 9.5</span></li>
+            <li>Inception <span class="rating">⭐ 9.0</span></li>
+            <li>The Dark Knight <span class="rating">⭐ 9.1</span></li>
+        </ul>
+
+        <h3>Add Your Favorite Movie</h3>
+        <input type="text" id="movieName" placeholder="Movie Name">
+        <input type="number" id="movieRating" placeholder="Rating (0-10)" step="0.1" min="0" max="10">
+        <button onclick="addMovie()">Add Movie</button>
+    </div>
+
+    <script>
+        function addMovie() {
+            let name = document.getElementById("movieName").value;
+            let rating = document.getElementById("movieRating").value;
+            
+            if (name === "" || rating === "" || rating < 0 || rating > 10) {
+                alert("Please enter a valid movie name and rating (0-10).");
+                return;
+            }
+
+            let movieList = document.getElementById("movieList");
+            let newMovie = document.createElement("li");
+            newMovie.innerHTML = `${name} <span class="rating">⭐ ${rating}</span>`;
+            movieList.appendChild(newMovie);
+
+            document.getElementById("movieName").value = "";
+            document.getElementById("movieRating").value = "";
+        }
+    </script>
+
+</body>
+</html>
